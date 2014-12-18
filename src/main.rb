@@ -1,10 +1,19 @@
+# Name: main.rb
+# Author: Cerek Hillen
+#
+# Description:
+#   The entry point to the application.
+
+##################
+# Global Imports #
 require 'rapgenius'
 
-#songs = RapGenius.search_by_title('Rigamortus')
-#for song in songs do
-  #printf('%s: %d', song.title, song.id)
-  #puts ''
-#end
+#################
+# Local Imports #
+require './ui.rb'
+
+########
+# Code #
 
 # Determining whether a lyric in a song is just for filler (such as '[Intro]' or
 # a blank line)
@@ -17,8 +26,13 @@ def format_lyric(lyric)
   return lyric.gsub('"', '')
 end
 
+# Running the UI to get the song ID.
+id = run_ui()
+
 # Loading the song we want from the interwebs.
-song = RapGenius::Song.find(51798)
+printf("Attempting to download song ID #%d metadata.\n", id)
+song = RapGenius::Song.find(id)
+printf("Song downloaded!\nTime to rap it up.\n")
 
 # Going through each line and piping it to say.
 for line in song.lines do
@@ -26,6 +40,6 @@ for line in song.lines do
     next
   end
 
-  puts format_lyric(line.lyric)
+  puts " " + format_lyric(line.lyric)
   `say "#{line.lyric}"`
 end
