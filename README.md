@@ -14,9 +14,8 @@ this was my first one), so here's just how I made it run:
 $ git clone http://github.com/crockeo/Rapper.git
 $ cd Rapper
 $ gem install rapgenius
-$ make
-# or
-$ ruby src/main.rb
+$ cd src
+$ ruby main.rb
 ```
 
 ### License
