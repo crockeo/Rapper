@@ -41,5 +41,5 @@ for line in song.lines do
   end
 
   puts " " + format_lyric(line.lyric)
-  `say "#{line.lyric}"`
+  `say -r 320 "#{line.lyric}"`
 end
